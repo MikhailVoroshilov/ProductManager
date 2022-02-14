@@ -19,6 +19,13 @@ public class ProductManager {
         Product[] result = new Product[0]; // тут будем хранить подошедшие запросу продукты
         for (Product product : repository.findAll()) {
             if (matches(product, text)) {
+                result = new Product[]{product};
+//                int lenght = result.length + 1;
+//                Product[] tmp = new Product[lenght];
+//                System.arraycopy(result, 0, tmp, 0, result.length);
+//                int lastIndex = tmp.length - 1;
+//                tmp[lastIndex] = product;
+//                result = tmp;
 
                 // "добавляем в конец" массива result продукт product
             }
@@ -37,8 +44,12 @@ public class ProductManager {
         // return product.getName().contains(search);
     }
 
-//    public void removeById(int id) {
-//        this.repository.removeById(id);
-//    }
+    public Product[] removeByIdProduct(int id) {
+        return repository.removeByID(id);
+    }
+
+    public Product[] findAllProduct() {
+        return repository.findAll();
+    }
 }
 

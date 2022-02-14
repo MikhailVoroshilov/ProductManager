@@ -60,7 +60,7 @@ class ProductRepositoryTest {
         repository.save(booking);
         repository.save(smarthone);
 
-        repository.deleteByID(99);
+        repository.removeByID(99);
 
         Product[] expected = new Product[]{booking};
         Product[] actual = repository.findAll();

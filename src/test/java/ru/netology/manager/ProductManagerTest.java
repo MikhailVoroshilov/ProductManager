@@ -6,11 +6,11 @@ import ru.netology.domain.Product;
 import ru.netology.domain.Smarthone;
 import ru.netology.repository.ProductRepository;
 
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ProductManagerTest {
-    private ProductRepository repository = new ProductRepository();
-    private ProductManager manager = new ProductManager(repository);
+    private ProductManager manager = new ProductManager(new ProductRepository());
 
     private Book book = new Book(1, "пес", 255, "Петров");
     private Book booking = new Book(3, "река", 195, "Петров");
@@ -24,23 +24,35 @@ class ProductManagerTest {
         manager.add(booking);
 
         Product[] expected = new Product[]{book, booking};
-        Product[] actual = repository.findAll();
+        Product[] actual = manager.findAllProduct();
+
         assertArrayEquals(expected, actual);
     }
 
-//    @Test
-//    public void shouldSearchBy() {
-//        manager.add(book);
-//        manager.add(booking);
-//        manager.add(smart);
-//        manager.add(smarthone);
-//
-//        manager.searchBy("samsung");
-//
-//        Product[] expected = new Product[]{smart};
-//        Product[] actual = repository.findAll();
-//        assertArrayEquals(expected, actual);
-//    }
+    @Test
+    public void shouldSearchBy() {
+        manager.add(book);
+        manager.add(booking);
+        manager.add(smart);
+        manager.add(smarthone);
 
+        Product[] expected = new Product[]{smart};
+        Product[] actual = manager.searchBy("notes");
+
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldRemoveByIdProduct() {
+        manager.add(book);
+        manager.add(booking);
+
+        manager.removeByIdProduct(3);
+
+        Product[] expected = new Product[]{book};
+        Product[] actual = manager.findAllProduct();
+
+        assertArrayEquals(expected, actual);
+    }
 
 }

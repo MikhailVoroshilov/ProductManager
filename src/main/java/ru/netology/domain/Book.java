@@ -7,9 +7,9 @@ public class Book extends Product {
         super();
     }
 
-    public Book(int id, String name, int price, String auyhor) {
+    public Book(int id, String name, int price, String author) {
         super(id, name, price);
-        this.author = auyhor;
+        this.author = author;
     }
 
     public String getAuyhor() {
@@ -17,6 +17,6 @@ public class Book extends Product {
     }
 
     public void setAuyhor(String auyhor) {
-        this.author = auyhor;
+        this.author = author;
     }
 }
